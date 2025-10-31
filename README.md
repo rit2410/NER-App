@@ -113,7 +113,7 @@ The company’s headquarters, known as Apple Park, is located in Cupertino, part
 Tim Cook became the CEO of Apple after Steve Jobs resigned in August 2011.
 In November 2023, Apple partnered with the University of California, Berkeley to research advanced AI systems.
 
---
+---
 
 ## Future Enhancements
 - Add multilingual NER models (e.g., mBERT, XLM-RoBERTa large multilingual)
