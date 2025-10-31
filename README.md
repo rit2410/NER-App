@@ -75,6 +75,8 @@ If installation stalls or Torch is slow on macOS:
   
 ## Deployed App
 
+https://ner-lab.streamlit.app
+
 ---
 ## How to Use
 - Choose the task type in the sidebar:
