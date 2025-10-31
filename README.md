@@ -7,19 +7,18 @@ Users can upload text or PDFs, select one or multiple models, visualize entities
 
 ## Features
 
-| Feature                               | Description                                                                                                      |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| **Dual Task Support**                 | Switch between *NER* and *News Classification* modes directly in the app                                         |
-| **Model Comparison Mode**             | Run and compare multiple models (BERT, RoBERTa, etc.) side-by-side using interactive tabs                        |
-| **Attention / Heatmap Visualization** | View token-level importance derived from entity scores for interpretability                                      |
-| **Nested Entity Support**             | Handles overlapping entities (e.g., “University of California” within “California”)                              |
-| **Classification Probabilities Bar**  | Visualizes category probabilities for each classification model                                                  |
-| **CSV Export**                        | Download entity or classification results per model or combined across all models                                |
-| **PDF/Text Input**                    | Upload `.txt` or `.pdf` files, or paste text directly                                                            |
+| Feature                    | Description                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- |
+| **Dual Task Support**      | Switch between *NER* and *News Classification* modes directly in the app                       |
+| **Model Comparison Mode**  | Run and compare multiple models (BERT, RoBERTa, etc.) side-by-side using interactive tabs      |
+| **Attention / Heatmap Visualization** | View token-level importance derived from entity scores for interpretability         |
+| **Nested Entity Support**             | Handles overlapping entities (e.g., “University of California” within “California”) |
+| **Classification Probabilities Bar**  | Visualizes category probabilities for each classification model |
+| **CSV Export**                        | Download entity or classification results per model or combined across all models |
+| **PDF/Text Input**                    | Upload `.txt` or `.pdf` files, or paste text directly  |
 | **Custom Hugging Face Model Support** | Use any token-classification or sequence-classification model from the Hugging Face Hub by entering its model ID |
-| **User-Friendly Sidebar**             | Control model, aggregation, device, and chunking parameters                                                      |
-| **Caching**                           | Re-runs are near-instant thanks to model and tokenizer caching                                                   |
-
+| **User-Friendly Sidebar**             | Control model, aggregation, device, and chunking parameters |
+| **Caching**                           | Re-runs are near-instant thanks to model and tokenizer caching |
 
 ---
 
