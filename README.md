@@ -1,49 +1,51 @@
-# Multi-Model Named Entity Recognition (NER) App (with Debug Logging)
+# Named Entity Recognition (NER) – Multi-Model Streamlit App
 
-A **Streamlit-based interactive NER application** that allows users to upload text or PDF files, choose from multiple pre-trained Transformer models (BERT, RoBERTa, XLM-RoBERTa, or any Hugging Face model), and view extracted named entities in both table and color-highlighted formats.
-
-This version includes **detailed print-based debugging** across all components so you can trace every step directly in your terminal — model loading, text chunking, inference, rendering, etc.
+An interactive **Streamlit application** that performs Named Entity Recognition (NER) using **state-of-the-art Transformer models** (BERT, RoBERTa, XLM-RoBERTa, and more).  
+Users can upload text or PDFs, select one or multiple models, visualize entities, compare model outputs side-by-side, and export results.
 
 ---
 
 ## Features
 
-- **Input Sources**
-  - Upload `.txt` or `.pdf` files  
-  - Paste free-form text directly into the app
+| Feature | Description |
+|----------|-------------|
+| **Model Comparison Mode** | Run and compare multiple models (BERT, RoBERTa, etc.) side-by-side using interactive tabs |
+| **Attention / Heatmap Visualization** | View token-level importance derived from entity scores for interpretability |
+| **Nested Entity Support** | Handles overlapping entities (e.g., “University of California” within “California”) |
+| **CSV Export** | Download entity results per model or combined across all models |
+| **PDF/Text Input** | Upload `.txt` or `.pdf` files, or paste text directly |
+| **Custom Hugging Face Model Support** | Use any token-classification model from Hugging Face Hub by entering its model ID |
+| **User-Friendly Sidebar** | Control model, aggregation, device, and chunking parameters |
+| **Caching** | Re-runs are near-instant thanks to model and tokenizer caching |
 
-- **Multiple Models**
-  - `dslim/bert-base-NER`
-  - `Jean-Baptiste/roberta-large-ner-english`
-  - `xlm-roberta-large-finetuned-conll03-english`
-  - or any **custom Hugging Face** model fine-tuned for token classification
+---
 
-- **Debug Logging**
-  - Every key operation (`load model`, `read file`, `chunk text`, `run inference`) prints status to the terminal
-  - Helps identify slow or failing steps during first-time model loading
+## Tech Stack
 
-- **Results Display**
-  - Color-highlighted entities in text view  
-  - Interactive table with entity, label, confidence score, and offsets  
-  - Expandable JSON view for raw model output
-
-- **Device & Chunk Controls**
-  - Select GPU/CPU automatically (`auto` or `cpu`)
-  - Adjustable chunk size for long texts
+- **Streamlit** – UI & interactivity  
+- **Transformers (Hugging Face)** – Model loading, tokenization, inference  
+- **PyTorch** – Model backend  
+- **Plotly** – Token-importance heatmaps  
+- **PDFPlumber** – Extracts text from PDF uploads  
+- **Pandas / NumPy** – Data handling  
+- **Python 3.10+** recommended
 
 ---
 
 ## Project Structure
 
+```plaintext
 ner_app/
-├── app.py # Main Streamlit UI with debug prints
+├── app.py                        # Streamlit main app
 ├── utils/
-│ ├── preprocessing.py # File reading & cleaning (TXT/PDF)
-│ ├── inference.py # Model loading, pipeline setup, NER inference
-│ └── visualization.py # Entity highlighting & table conversion
+│   ├── inference.py              # Model loading, tokenization, inference, caching
+│   ├── preprocessing.py          # Read text/PDF and clean text
+│   └── visualization.py          # Render entities, dataframes, token heatmaps
+├── data/
+│   └── sample_dataset.txt        # (Optional) Example input file
 ├── requirements.txt
 └── README.md
-
+```
 
 ---
 
@@ -73,13 +75,36 @@ If installation stalls or Torch is slow on macOS:
 ## Example Workflow
 1. Select model in the sidebar (e.g., RoBERTa)
 2. Upload text or PDF or paste raw text
-3. Click Run NER
-4. Observe progress in your terminal
-5. View:
+3. To test the app try pasting below text -
+   
+*Apple Inc. was founded by Steve Jobs, Steve Wozniak, and Ronald Wayne in Cupertino, California in April 1976.
+The company’s headquarters, known as Apple Park, is located in the city of Cupertino, part of the San Francisco Bay Area.
+
+Tim Cook became the CEO of Apple after Steve Jobs resigned in August 2011. Under Cook’s leadership, Apple launched
+several groundbreaking products including the iPhone 13 Pro, Apple Watch Series 9, and MacBook Air M3.
+
+In November 2023, Apple partnered with the University of California, Berkeley to research advanced AI systems
+for medical diagnostics. The project was co-funded by the U.S. Department of Health and the European Commission.
+
+Meanwhile, Microsoft Corporation, based in Redmond, Washington, announced a collaboration with OpenAI
+to integrate GPT-4 into Microsoft Office 365. This collaboration was first revealed at the Microsoft Build Conference
+held in Seattle on May 22, 2023.
+
+Elon Musk’s company, SpaceX, launched the Starship rocket from Boca Chica, Texas on April 20, 2023,
+and later secured a contract with NASA worth $2.9 billion. NASA Administrator Bill Nelson congratulated SpaceX
+on the successful launch, calling it “a new era in space exploration.”
+
+Notably, the University of Oxford in England conducted a comparative study between Apple’s and Microsoft’s
+AI ethics frameworks in 2024.
+*
+
+4. Click Run NER
+5. Observe progress in your terminal
+7. View:
    - Entities Table with scores
    - Highlighted Text
    - Raw JSON output
-6. Model	Description
+8. Model	Description
 - dslim/bert-base-NER	General English NER baseline
 - Jean-Baptiste/roberta-large-ner-english	RoBERTa model fine-tuned on NER
 - xlm-roberta-large-finetuned-conll03-english	Cross-lingual (XLM-R) variant
