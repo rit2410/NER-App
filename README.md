@@ -85,6 +85,7 @@ If installation stalls or Torch is slow on macOS:
 ### For NER
 - Select one or more models
 - Supported Models
+  
 | Model        | Hugging Face ID                             |
 | ------------ | ------------------------------------------- |
 | BERT         | dslim/bert-base-NER                         |
@@ -109,6 +110,7 @@ If installation stalls or Torch is slow on macOS:
 
 ### For News Classification
 - Supported Models
+  
 | Model                          | Hugging Face ID                                                   |
 | ------------------------------ | ----------------------------------------------------------------- |
 | DistilBERT (SST-2 Sentiment)   | distilbert-base-uncased-finetuned-sst-2-english                   |
