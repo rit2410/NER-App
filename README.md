@@ -85,11 +85,3 @@ If installation stalls or Torch is slow on macOS:
 - xlm-roberta-large-finetuned-conll03-english	Cross-lingual (XLM-R) variant
 - dslim/distilbert-NER	Lightweight & faster baseline
 
----
-
-## Future Enhancements
-Add model comparison mode (side-by-side results)
-Add attention/heatmap visualization
-Include nested-entity handling
-Save results to CSV
-
