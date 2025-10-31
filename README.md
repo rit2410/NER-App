@@ -72,41 +72,51 @@ If installation stalls or Torch is slow on macOS:
 ## Deployed App
 
 ---
-## Example Workflow
-1. Select model in the sidebar (e.g., RoBERTa)
-2. Upload text or PDF or paste raw text
-3. To test the app try pasting below text -
-   
-*Apple Inc. was founded by Steve Jobs, Steve Wozniak, and Ronald Wayne in Cupertino, California in April 1976.
-The company’s headquarters, known as Apple Park, is located in the city of Cupertino, part of the San Francisco Bay Area.
+## How to Use
+- Upload a .txt or .pdf file, or paste text in the sidebar.
+- Select one or more models (e.g., BERT, RoBERTa, XLM-RoBERTa).
+- (Optional) Enter any Hugging Face model ID for custom models, e.g.:
+    1. dslim/bert-base-NER
+    2. Jean-Baptiste/roberta-large-ner-english
+    3. xlm-roberta-large-finetuned-conll03-english
+- Adjust:
+    1. Aggregation Strategy → simple, max, first, average
+    2. Device → auto (GPU if available) or cpu
+    3. Chunk Size → for long text documents
+- Click Run NER.
+- Explore:
+    1. Entity table and highlights
+    2. Token importance (heatmap)
+    3. CSV download buttons
+    4. Comparison tabs for each model
+- Supported Models
+    1. Model	Hugging Face ID
+    2. BERT	dslim/bert-base-NER
+    3. RoBERTa	Jean-Baptiste/roberta-large-ner-english
+    4. XLM-RoBERTa	xlm-roberta-large-finetuned-conll03-english
+    5. Custom Model	(User-provided HF ID)
+- Exporting Results
+    1. After inference, you can:
+       - Download per-model CSV with entities (text, label, score, start, end)
+       - Download a combined CSV (includes results from all models with a model column)
+- Visualization Examples
+    1. Type	Description
+    2. Entity Highlights	Colored spans for each recognized entity
+    3. Token Importance Bar	Proxy attention plot showing token relevance
+    4. Model Tabs	Side-by-side comparison of BERT vs RoBERTa vs XLM-RoBERTa
+ 
+---
+       
+## Example Input Text
+Apple Inc. was founded by Steve Jobs, Steve Wozniak, and Ronald Wayne in Cupertino, California in April 1976.
+The company’s headquarters, known as Apple Park, is located in Cupertino, part of the San Francisco Bay Area.
+Tim Cook became the CEO of Apple after Steve Jobs resigned in August 2011.
+In November 2023, Apple partnered with the University of California, Berkeley to research advanced AI systems.
 
-Tim Cook became the CEO of Apple after Steve Jobs resigned in August 2011. Under Cook’s leadership, Apple launched
-several groundbreaking products including the iPhone 13 Pro, Apple Watch Series 9, and MacBook Air M3.
+--
 
-In November 2023, Apple partnered with the University of California, Berkeley to research advanced AI systems
-for medical diagnostics. The project was co-funded by the U.S. Department of Health and the European Commission.
-
-Meanwhile, Microsoft Corporation, based in Redmond, Washington, announced a collaboration with OpenAI
-to integrate GPT-4 into Microsoft Office 365. This collaboration was first revealed at the Microsoft Build Conference
-held in Seattle on May 22, 2023.
-
-Elon Musk’s company, SpaceX, launched the Starship rocket from Boca Chica, Texas on April 20, 2023,
-and later secured a contract with NASA worth $2.9 billion. NASA Administrator Bill Nelson congratulated SpaceX
-on the successful launch, calling it “a new era in space exploration.”
-
-Notably, the University of Oxford in England conducted a comparative study between Apple’s and Microsoft’s
-AI ethics frameworks in 2024.
-*
-
-4. Click Run NER
-5. Observe progress in your terminal
-7. View:
-   - Entities Table with scores
-   - Highlighted Text
-   - Raw JSON output
-8. Model	Description
-- dslim/bert-base-NER	General English NER baseline
-- Jean-Baptiste/roberta-large-ner-english	RoBERTa model fine-tuned on NER
-- xlm-roberta-large-finetuned-conll03-english	Cross-lingual (XLM-R) variant
-- dslim/distilbert-NER	Lightweight & faster baseline
-
+## Future Enhancements
+- Add multilingual NER models (e.g., mBERT, XLM-RoBERTa large multilingual)
+- Integrate sentence segmentation for long documents
+- Add performance benchmarking across models
+- Add per-entity confidence visualizations
