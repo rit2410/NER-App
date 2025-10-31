@@ -1,7 +1,5 @@
-import io
 import re
 from typing import Optional
-import streamlit as st
 
 try:
     import pdfplumber
@@ -21,13 +19,13 @@ def read_text_from_upload(uploaded_file) -> Optional[str]:
             txt = data.decode("utf-8")
         except UnicodeDecodeError:
             txt = data.decode("latin-1", errors="ignore")
-        print(f"✅ TXT file read successfully ({len(txt)} chars).")
+        print(f"✅ TXT file read ({len(txt)} chars).")
         return txt
 
     if name.endswith(".pdf"):
         if not _HAS_PDF:
             raise RuntimeError("❌ pdfplumber not installed. Please add 'pdfplumber' to requirements.txt.")
-        print("📄 Detected PDF file. Extracting text...")
+        print("📄 Detected PDF. Extracting text...")
         text_parts = []
         with pdfplumber.open(uploaded_file) as pdf:
             for i, page in enumerate(pdf.pages):
@@ -35,17 +33,17 @@ def read_text_from_upload(uploaded_file) -> Optional[str]:
                 print(f"📘 Page {i+1}: {len(page_text)} chars.")
                 text_parts.append(page_text)
         joined = "\n".join(text_parts)
-        print(f"✅ PDF read successfully ({len(joined)} chars).")
+        print(f"✅ PDF read ({len(joined)} chars).")
         return joined
 
     print("⚠️ Unsupported file type.")
     return None
-
 
 def clean_text(text: str) -> str:
     print("🧹 Cleaning text...")
     text = text.replace("\r", " ")
     text = re.sub(r"[ \t\f\v]+", " ", text)
     text = re.sub(r"\n{3,}", "\n\n", text)
-    print(f"✅ Cleaned text length: {len(text)}")
-    return text.strip()
+    cleaned = text.strip()
+    print(f"✅ Cleaned text length: {len(cleaned)}")
+    return cleaned
